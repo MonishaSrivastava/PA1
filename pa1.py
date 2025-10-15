@@ -14,7 +14,7 @@
 
 
 def add_class(schedule):
-    section = input("Would you like to add classes, d-blocks, or e-blocks? --> ") #Change to section instead of mod
+    section = input("Would you like to add classes, d-blocks, or e-blocks? --> ")
 
     if section == "classes":
         mod = input ("what mod would you like to add classes to? choose: mod 1-7 --> ").strip().lower()
@@ -50,7 +50,7 @@ def add_class(schedule):
 
 
 def remove_class(schedule):
-    section = input("Would you like to change classes, d-blocks, or e-blocks? --> ") #Change to section instead of mod
+    section = input("Would you like to change classes, d-blocks, or e-blocks? --> ") 
 
     if section == "classes":
         mod = input ("what mod would you like to change classes to? choose: mod 1-7 --> ").strip().lower()
@@ -88,7 +88,7 @@ def remove_class(schedule):
             schedule["d-blocks"][season].remove(activity_remove)
             print(f"{activity_remove} has been removed from your {season}")
         else:
-            print("This activity isn't in your")
+            print("This activity isn't in your d-block")
     
     elif section == "e-blocks":
 
@@ -105,7 +105,7 @@ def remove_class(schedule):
             print("That activity isnt in your e-block")
 
     else:
-        print("Invalid section,try again")
+        print("Invalid section, try again")
     return schedule
 
 
@@ -223,7 +223,7 @@ def main():
         elif user_choice == "change":
             schedule = change_class(schedule)
         elif user_choice == "quit":
-            print(f"\nGoodbye, {name}! Your final mod, schedule is: ")
+            print(f"\nGoodbye, {name}! Your final schedule is: ")
             show_schedule(schedule)
             break
         else:
