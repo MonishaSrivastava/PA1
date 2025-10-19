@@ -22,23 +22,37 @@ def add_class(schedule):
             print("Doesn't exist! Try again please")
             return schedule
         
+        if len(schedule["classes"][mod]) >= 3: #Len function tells Python how much items are in one thing symbolised by >=, the >= is a comparison operator which means greater than or equal to, it tells python to check if you already have a set number of something, resulting in the program not allowing you to add another.
+            print(f"You already have 3 classes in {mod}. You can’t add more. Sorry")
+            return schedule
+        
         new_class = input("Enter the name of the class that you want to have: ")
         schedule["classes"][mod].append(new_class)
         print(f"{new_class} has been added to your {mod}")
         return schedule
+    
 
     elif section == "d-blocks":
         season = input("what season would you like to add your d-block in? choose Fall/Winter/Spring D-block --> ").strip().lower()
         if season not in schedule["d-blocks"]:
             print("Doesn't exist! Try again please")
             return schedule
-    
+        
+        if len(schedule["d-blocks"][season]) >= 1:
+            print(f"You already have 1 d-block in {season}. You can’t add more. Sorry")
+            return schedule
+        
         new_activity = input("Enter the name of the d-block that you want to have: ")
         schedule["d-blocks"][season].append(new_activity)
         print(f"{new_activity} has been added to your {season}")
       
+      
     
     elif section == "e-blocks":
+        if len(schedule["e-blocks"]) >= 3: 
+            print(f"You already have 3 e-blocks. You can’t add more. Sorry")
+            return schedule
+         
         new_extra = input("enter your e-block: ").strip().lower()
         schedule["e-blocks"].append(new_extra)
         print(f"{new_extra} has been added to your e-blocks")
@@ -66,7 +80,7 @@ def remove_class(schedule):
         class_to_remove = input("Enter the class you want to remove: ").strip().lower()
 
         if class_to_remove in schedule["classes"][mod]:
-            schedule["classes"][mod].remove(class_to_remove) 
+            schedule["classes"][mod].remove(class_to_remove)  #I used remove function instead of pop, it was too confusing for me
             print(f"{class_to_remove} has been removed from {mod}")
 
         else:
@@ -99,7 +113,7 @@ def remove_class(schedule):
         print(f"Your current e-blocks are: {schedule['e-blocks']}")
         extra_remove = input("Enter the e-block class you want to remove: ").strip().lower()
         if extra_remove in schedule["e-blocks"]:
-            schedule["e-blocks"].append(extra_remove)
+            schedule["e-blocks"].remove(extra_remove)
             print(f"{extra_remove} has been removed from your e-blocks")
         else:
             print("That activity isnt in your e-block")
@@ -127,8 +141,8 @@ def change_class(schedule):
 
         if class_to_change in schedule["classes"][mod]:
             new_class = input(f"What class would you like to replace {class_to_change} with? ").strip()
-            index = schedule["classes"][mod].index(class_to_change)
-            schedule[mod][index] = new_class
+            index = schedule["classes"][mod].index(class_to_change) #the index function is used to find the index number or position of an item inside a list or str. In this case, it finds where the class is in the list and replaces it with a new class
+            schedule[mod][index] = new_class 
             print(f"{class_to_change} has been changed to {new_class} in {mod}.")
 
     elif section == "d-blocks":
@@ -173,7 +187,7 @@ def change_class(schedule):
         print("Invalid section")
     return schedule
 
-def show_schedule(schedule):
+def show_schedule(schedule): #def to show the schedule in the end
     print("\nHere's your full schedule! --> ")
 
     print("\nMods and Classes:")
@@ -192,7 +206,7 @@ def main():
     name = input("Hi! Please enter your name: ")
     print(f"Hello, {name}! Lets customize your schedule.")
 
-    schedule = {
+    schedule = { #Schedule components
     "classes": {
         "mod 1": [],
         "mod 2": [],
@@ -214,7 +228,7 @@ def main():
 
     while True: 
         show_schedule(schedule)
-        user_choice = input("\nWhat would you like to do? (add, drop, change, quit) --> ").lower()
+        user_choice = input("\nWhat would you like to do? (add, drop, change, quit) --> ").lower().strip()
         
         if user_choice == "add":
             schedule = add_class(schedule)
@@ -229,5 +243,6 @@ def main():
         else:
             print("Invalid input, please try again")
 
+#To run the code
 if __name__ == "__main__":
     main()
