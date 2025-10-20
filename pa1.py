@@ -209,7 +209,14 @@ def main():
 
     schedule = { #Schedule components
     "classes": {
-},
+        "mod 1": [],
+        "mod 2": [],
+        "mod 3": [],
+        "mod 4": [],
+        "mod 5": [],
+        "mod 6": [],
+        "mod 7": [],
+    },
     "d-blocks": {
         "fall": [],
         "winter": [],
