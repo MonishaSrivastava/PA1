@@ -1,187 +1,34 @@
-def add_class(schedule):
-    section = input("Would you like to add to classes, d-blocks, or e-blocks? --> ").strip().lower()
+mod 1
+A block
+B block
+C block
 
-    # Adding to regular classes (mods)
-    if section == "classes":
-        mod = input("Which mod would you like to add to? (mod 1–7) --> ").strip().lower()
-        if mod not in schedule["classes"]:
-            print("That mod doesn’t exist. Try again!")
-            return schedule
-        new_class = input("Enter the name of the class you want to add: ").strip()
-        schedule["classes"][mod].append(new_class)
-        print(f"{new_class} has been added to {mod}.")
+mod 2
+A block
+B block
+C block
 
-    # Adding to seasonal D-blocks
-    elif section == "d-blocks":
-        season = input("Which season? (fall, winter, spring) --> ").strip().lower()
-        if season not in schedule["d-blocks"]:
-            print("That season doesn’t exist. Try again!")
-            return schedule
-        new_activity = input("Enter the D-block activity you want to add: ").strip()
-        schedule["d-blocks"][season].append(new_activity)
-        print(f"{new_activity} has been added to your {season.capitalize()} D-block.")
+mod 3
+A block
+B block
+C block
 
-    # Adding to E-blocks
-    elif section == "e-blocks":
-        new_extra = input("Enter the E-block (extra activity) you want to add: ").strip()
-        schedule["e-blocks"].append(new_extra)
-        print(f"{new_extra} has been added to your E-blocks.")
+mod 4
+A block
+B block
+C block
 
-    else:
-        print("Invalid section. Please choose 'classes', 'd-blocks', or 'e-blocks'.")
-    return schedule
+mod 5
+A block
+B block
+C block
 
+mod 6
+A block
+B block
+C block
 
-def remove_class(schedule):
-    section = input("Would you like to remove from classes, d-blocks, or e-blocks? --> ").strip().lower()
-
-    if section == "classes":
-        mod = input("Which mod would you like to remove from? (mod 1–7) --> ").strip().lower()
-        if mod not in schedule["classes"]:
-            print("That mod doesn’t exist. Try again!")
-            return schedule
-        if not schedule["classes"][mod]:
-            print(f"No classes found in {mod}.")
-            return schedule
-        print(f"Your current {mod}: {schedule['classes'][mod]}")
-        class_to_remove = input("Enter the class to remove: ").strip()
-        if class_to_remove in schedule["classes"][mod]:
-            schedule["classes"][mod].remove(class_to_remove)
-            print(f"{class_to_remove} removed from {mod}.")
-        else:
-            print("That class isn't in your schedule.")
-
-    elif section == "d-blocks":
-        season = input("Which season? (fall, winter, spring) --> ").strip().lower()
-        if season not in schedule["d-blocks"]:
-            print("That season doesn’t exist. Try again!")
-            return schedule
-        if not schedule["d-blocks"][season]:
-            print(f"No D-block activities found for {season.capitalize()}.")
-            return schedule
-        print(f"Your {season.capitalize()} D-blocks: {schedule['d-blocks'][season]}")
-        activity_to_remove = input("Enter the activity to remove: ").strip()
-        if activity_to_remove in schedule["d-blocks"][season]:
-            schedule["d-blocks"][season].remove(activity_to_remove)
-            print(f"{activity_to_remove} removed from your {season.capitalize()} D-block.")
-        else:
-            print("That activity isn’t in your D-blocks.")
-
-    elif section == "e-blocks":
-        if not schedule["e-blocks"]:
-            print("No E-block activities found.")
-            return schedule
-        print(f"Your current E-blocks: {schedule['e-blocks']}")
-        extra_to_remove = input("Enter the activity to remove: ").strip()
-        if extra_to_remove in schedule["e-blocks"]:
-            schedule["e-blocks"].remove(extra_to_remove)
-            print(f"{extra_to_remove} removed from E-blocks.")
-        else:
-            print("That activity isn’t in your E-blocks.")
-
-    else:
-        print("Invalid section. Try again.")
-    return schedule
-
-
-def change_class(schedule):
-    section = input("Would you like to change something in classes, d-blocks, or e-blocks? --> ").strip().lower()
-
-    if section == "classes":
-        mod = input("Which mod? (mod 1–7) --> ").strip().lower()
-        if mod not in schedule["classes"]:
-            print("That mod doesn’t exist.")
-            return schedule
-        if not schedule["classes"][mod]:
-            print(f"No classes in {mod} to change.")
-            return schedule
-        print(f"Your current {mod}: {schedule['classes'][mod]}")
-        old = input("Which class would you like to change? --> ").strip()
-        if old in schedule["classes"][mod]:
-            new = input(f"What class would you like to replace {old} with? --> ").strip()
-            index = schedule["classes"][mod].index(old)
-            schedule["classes"][mod][index] = new
-            print(f"{old} changed to {new} in {mod}.")
-        else:
-            print("That class isn’t in your schedule.")
-
-    elif section == "d-blocks":
-        season = input("Which season? (fall, winter, spring) --> ").strip().lower()
-        if season not in schedule["d-blocks"]:
-            print("That season doesn’t exist.")
-            return schedule
-        if not schedule["d-blocks"][season]:
-            print(f"No D-blocks for {season.capitalize()} to change.")
-            return schedule
-        print(f"Your current {season.capitalize()} D-blocks: {schedule['d-blocks'][season]}")
-        old = input("Which activity would you like to change? --> ").strip()
-        if old in schedule["d-blocks"][season]:
-            new = input(f"What would you like to replace {old} with? --> ").strip()
-            index = schedule["d-blocks"][season].index(old)
-            schedule["d-blocks"][season][index] = new
-            print(f"{old} changed to {new} in {season.capitalize()} D-block.")
-        else:
-            print("That activity isn’t in your D-blocks.")
-
-    elif section == "e-blocks":
-        if not schedule["e-blocks"]:
-            print("No E-blocks to change.")
-            return schedule
-        print(f"Your current E-blocks: {schedule['e-blocks']}")
-        old = input("Which E-block activity would you like to change? --> ").strip()
-        if old in schedule["e-blocks"]:
-            new = input(f"What would you like to replace {old} with? --> ").strip()
-            index = schedule["e-blocks"].index(old)
-            schedule["e-blocks"][index] = new
-            print(f"{old} changed to {new} in E-blocks.")
-        else:
-            print("That activity isn’t in your E-blocks.")
-    else:
-        print("Invalid section.")
-    return schedule
-
-
-def show_schedule(schedule):
-    print("\n📘 FULL SCHEDULE:")
-    print("\nRegular Classes:")
-    for mod, classes in schedule["classes"].items():
-        print(f"  {mod.capitalize()}: {classes if classes else 'No classes'}")
-
-    print("\nD-blocks by Season:")
-    for season, activities in schedule["d-blocks"].items():
-        print(f"  {season.capitalize()}: {activities if activities else 'No activities'}")
-
-    print("\nE-blocks:")
-    print(f"  {schedule['e-blocks'] if schedule['e-blocks'] else 'No activities'}")
-
-
-def main():
-    name = input("Hi! Please enter your name: ").strip()
-    print(f"Hello, {name}! Let’s build your school schedule.\n")
-
-    schedule = {
-        "classes": {f"mod {i}": [] for i in range(1, 8)},
-        "d-blocks": {"fall": [], "winter": [], "spring": []},
-        "e-blocks": []
-    }
-
-    while True:
-        show_schedule(schedule)
-        action = input("\nWhat would you like to do? (add, drop, change, quit) --> ").strip().lower()
-
-        if action == "add":
-            schedule = add_class(schedule)
-        elif action == "drop":
-            schedule = remove_class(schedule)
-        elif action == "change":
-            schedule = change_class(schedule)
-        elif action == "quit":
-            print(f"\nGoodbye, {name}! Here’s your final schedule:")
-            show_schedule(schedule)
-            break
-        else:
-            print("Invalid input, please try again.")
-
-
-if __name__ == "__main__":
-    main()
+mod 7
+A block
+B block
+C block
