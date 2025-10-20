@@ -12,6 +12,7 @@
 
 #Add functionality to loop this 7 times for whatever for D/E blocks), and give an option to make and display a full year schedule
 
+#Setting up a version of PA1 that uses files instead of dictionaries
 
 def add_class(schedule):
     section = input("Would you like to add classes, d-blocks, or e-blocks? --> ")
@@ -208,14 +209,7 @@ def main():
 
     schedule = { #Schedule components
     "classes": {
-        "mod 1": [],
-        "mod 2": [],
-        "mod 3": [],
-        "mod 4": [],
-        "mod 5": [],
-        "mod 6": [],
-        "mod 7": [],
-    },
+},
     "d-blocks": {
         "fall": [],
         "winter": [],
