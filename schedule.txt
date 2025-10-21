@@ -3,32 +3,39 @@ A block
 B block
 C block
 
+
 mod 2
-A block
-B block
-C block
+A block: CS2
+B block: Physics
+C block: English
+
 
 mod 3
 A block
 B block
 C block
 
+
 mod 4
 A block
 B block
 C block
+
 
 mod 5
 A block
 B block
 C block
 
+
 mod 6
 A block
 B block
 C block
 
+
 mod 7
 A block
 B block
 C block
+

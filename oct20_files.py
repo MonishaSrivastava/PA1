@@ -1,5 +1,4 @@
 my_schedule = open("schedule.txt")
 
-print(my_schedule)
-
-print(my_schedule.read())
+while my_schedule.readline(6) != "2":
+    print(my_schedule.readline())
