@@ -22,15 +22,21 @@ def add_class(schedule):
             print("Doesn't exist! Try again please")
             return schedule
         
-        if len(schedule["classes"][mod]) >= 3: #Len function tells Python how much items are in one thing symbolised by >=, the >= is a comparison operator which means greater than or equal to, it tells python to check if you already have a set number of something, resulting in the program not allowing you to add another.
-            print(f"You already have 3 classes in {mod}. You can’t add more. Sorry")
+        block = input("what block? a, b, or c? --> ")
+        if block not in schedule["classes"][mod]:
+            print("That block does not exist")
             return schedule
+         
+        if schedule["classes"][mod][block] != "":
+            print(f"{mod} {block} block already has a class assigned: {schedule['classes'][mod][block]}")
+            return schedule
+
         
         new_class = input("Enter the name of the class that you want to have: ")
-        schedule["classes"][mod].append(new_class)
-        print(f"{new_class} has been added to your {mod}")
+        schedule["classes"][mod][block]=new_class
+        print(f"{new_class} has been added to your {mod}:{block}")
         return schedule
-    
+
 
     elif section == "d-blocks":
         season = input("what season would you like to add your d-block in? choose Fall/Winter/Spring D-block --> ").strip().lower()
@@ -72,11 +78,16 @@ def remove_class(schedule):
             print("Doesn't exist! Try again please")
             return schedule
         
-        if not schedule["classes"][mod]:
-            print(f"You don't have any classes in {mod} to remove!")
+        block = input("what block? a, b, or c? --> ")
+        if block not in schedule["classes"][mod]:
+            print("That block does not exist")
+            return schedule
+        
+        if schedule["classes"][mod][block] == "":
+            print("No classes to remove in this block")
             return schedule
      
-        print(f"Your current classes are {mod}: {schedule['classes'][mod]}")
+        print(f"Your current classes are {mod}: {schedule['classes'][mod][block]}")
         class_to_remove = input("Enter the class you want to remove: ").strip().lower()
 
         if class_to_remove in schedule["classes"][mod]:
@@ -132,7 +143,12 @@ def change_class(schedule):
             print ("Doesn't exist! Try again")
             return schedule
 
-        if not schedule["classes"][mod]:
+        block = input("what block? a, b, or c? --> ")
+        if block not in schedule["classes"][mod]:
+            print("That block does not exist")
+            return schedule
+
+        if not schedule["classes"][mod][block]:
             print(f"You don't have any classes in {mod} to change!")
             return schedule
 
@@ -208,13 +224,13 @@ def main():
 
     schedule = { #Schedule components
     "classes": {
-        "mod 1": [],
-        "mod 2": [],
-        "mod 3": [],
-        "mod 4": [],
-        "mod 5": [],
-        "mod 6": [],
-        "mod 7": [],
+        "mod 1": {"a": "", "b": "", "c": ""},
+        "mod 2": {"a": "", "b": "", "c": ""},
+        "mod 3": {"a": "", "b": "", "c": ""},
+        "mod 4": {"a": "", "b": "", "c": ""},
+        "mod 5": {"a": "", "b": "", "c": ""},
+        "mod 6": {"a": "", "b": "", "c": ""},
+        "mod 7": {"a": "", "b": "", "c": ""},
     },
     "d-blocks": {
         "fall": [],
