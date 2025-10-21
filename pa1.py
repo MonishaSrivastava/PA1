@@ -22,10 +22,13 @@ def add_class(schedule):
             print("Doesn't exist! Try again please")
             return schedule
         
-        block = input("what block? a, b, or c? --> ")
+        block = input("what block? a, b, or c? --> ").lower()
         if block not in schedule["classes"][mod]:
             print("That block does not exist")
             return schedule
+        
+        #I did this a bit differently (same for change and remove) everything I tried to use the .remove function or .append function it didn't work)
+
          
         if schedule["classes"][mod][block] != "":
             print(f"{mod} {block} block already has a class assigned: {schedule['classes'][mod][block]}")
@@ -78,7 +81,7 @@ def remove_class(schedule):
             print("Doesn't exist! Try again please")
             return schedule
         
-        block = input("what block? a, b, or c? --> ")
+        block = input("what block? a, b, or c? --> ").lower()
         if block not in schedule["classes"][mod]:
             print("That block does not exist")
             return schedule
@@ -87,15 +90,9 @@ def remove_class(schedule):
             print("No classes to remove in this block")
             return schedule
      
-        print(f"Your current classes are {mod}: {schedule['classes'][mod][block]}")
-        class_to_remove = input("Enter the class you want to remove: ").strip().lower()
-
-        if class_to_remove in schedule["classes"][mod]:
-            schedule["classes"][mod].remove(class_to_remove)  #I used remove function instead of pop, it was too confusing for me
-            print(f"{class_to_remove} has been removed from {mod}")
-
-        else:
-            print("This class is not in your schedule")
+        print(f"Removed class from {block}")
+        schedule["classes"][mod][block] = ""
+        return schedule
 
     elif section == "d-blocks":
         season = input("what season would you to change your d-block in? choose Fall/Winter/Spring D-block --> ").strip().lower()
@@ -143,23 +140,21 @@ def change_class(schedule):
             print ("Doesn't exist! Try again")
             return schedule
 
-        block = input("what block? a, b, or c? --> ")
+        block = input("what block? a, b, or c? --> ").lower()
         if block not in schedule["classes"][mod]:
             print("That block does not exist")
             return schedule
 
-        if not schedule["classes"][mod][block]:
+        if schedule["classes"][mod][block] == "":
             print(f"You don't have any classes in {mod} to change!")
             return schedule
+    
 
-        print(f"Your current classes are {mod}: {schedule['classes'][mod]}")
-        class_to_change = input(f"Enter the class you want to change: ").strip().lower()
-
-        if class_to_change in schedule["classes"][mod]:
-            new_class = input(f"What class would you like to replace {class_to_change} with? ").strip()
-            index = schedule["classes"][mod].index(class_to_change) #the index function is used to find the index number or position of an item inside a list or str. In this case, it finds where the class is in the list and replaces it with a new class
-            schedule[mod][index] = new_class 
-            print(f"{class_to_change} has been changed to {new_class} in {mod}.")
+        print(f"Your current classes are {mod}: {schedule['classes'][mod][block]}")
+        new_class = input(f"What class would you like to replace {schedule['classes'][mod][block]} with? ").strip()
+        schedule["classes"][mod][block]=new_class
+        print(f"Your class has been changed to {new_class} in {mod}:{block}.")
+        return schedule
 
     elif section == "d-blocks":
         season = input("what season would you to change your d-block in? choose fall/winter/spring --> ").strip().lower()
