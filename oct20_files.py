@@ -1,4 +1,3 @@
-my_schedule = open("schedule.txt")
-
-while my_schedule.readline(6) != "2":
-    print(my_schedule.readline())
+my_schedule = open("schedule.txt", "w")
+my_schedule.write("My new schedule!!\n")
+my_schedule.close()
