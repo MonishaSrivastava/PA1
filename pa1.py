@@ -1,16 +1,7 @@
-#write a small program that allows people to add, drop, and change their mod 2 schedule
-
-#function to add a class
-
-#function to change a class
-
-#function to drop (delete/pop) a class
-
-#main function
-
-#Write a program that allows people to add, drop, and change a mod schedule - All 7 mods
-
-#Add functionality to loop this 7 times for whatever for D/E blocks), and give an option to make and display a full year schedule
+#Name: Monisha Srivastava
+#Description: Full Schedule input code
+#WWW: I was able to get d-blocks and e-block in as well in addition to the mods and be able to set up so you only have 3 classes per mod, 1 class per season, and 3 e-blocks per year. I also usually don't use the in function or the not in function so it was nice being able to use it without that much knowledge about it based on my old projects. I also learnt new things such as != or =< or ==: "" (I provided the links to where I learnt that + a short meaning to show my understanding)
+#EBI: I think it would be better if there was a way where all my classes were initally filled out so you would be able to see it before making changes like how you would do at Madeira. 
 
 
 def add_class(schedule):
@@ -47,7 +38,7 @@ def add_class(schedule):
             print("Doesn't exist! Try again please")
             return schedule
         
-        if len(schedule["d-blocks"][season]) >= 1: #len function and >= checks if theres 1 or more d-blocks in the season
+        if len(schedule["d-blocks"][season]) >= 1: #len function and >= checks if theres 1 or more d-blocks in the season https://stackoverflow.com/questions/23349136/less-than-or-greater-than-comparison-as-a-variable-in-python
             print(f"You already have 1 d-block in {season}. You can’t add more. Sorry")
             return schedule
         
@@ -86,7 +77,7 @@ def remove_class(schedule):
             print("That block does not exist")
             return schedule
         
-        if schedule["classes"][mod][block] == "": #== "" tells python to check if it is empty it will be true when there is nothing inside the variable
+        if schedule["classes"][mod][block] == "": #== "" tells python to check if it is empty it will be true when there is nothing inside the variable 
             print("No classes to remove in this block")
             return schedule
      
@@ -107,7 +98,7 @@ def remove_class(schedule):
         print(f"Your current d-blocks are {season}: {schedule['d-blocks'][season]}")
         activity_remove = input("Enter the name of the d-block that you want to remove: ").strip().lower()
         if activity_remove in schedule[season]["d-blocks"]:
-            schedule["d-blocks"][season].remove(activity_remove) #.remove function
+            schedule["d-blocks"][season].remove(activity_remove) #.remove function https://www.w3schools.com/python/ref_list_remove.asp
             print(f"{activity_remove} has been removed from your {season}")
         else:
             print("This activity isn't in your d-block")
@@ -180,17 +171,17 @@ def change_class(schedule):
         
     elif section == "e-blocks":
 
-        if extra_change not in schedule["e-blocks"]:
+        if not schedule["e-blocks"]:
             print("Doesn't exist! Try again please")
             return schedule
         
         print(f"Your current e-blocks are: {schedule['e-blocks']}")
         extra_change = input("Enter the e-block class you want to remove: ").strip().lower()
 
-        if extra_change in schedule["e-blocks"][schedule]:
-            new_extra = input(f"What would you like to replace {extra_change} with? ")
-            schedule["e-blocks"].index(extra_change)
-            schedule("e-blocks")[index] = new_extra
+        if extra_change in schedule["e-blocks"]:
+            new_extra = input(f"What would you like to replace {extra_change} with? ")  
+            index = schedule["e-blocks"].index(extra_change)
+            schedule["e-blocks"][index] = new_extra
             print(f"{extra_change} has been changed from your e-blocks to {new_extra}")
         else:
             print("This activity isn't in your e-block")
