@@ -140,7 +140,7 @@ def change_class(schedule):
             print ("Doesn't exist! Try again")
             return schedule
 
-        block = input("what block? a, b, or c? --> ").lower
+        block = input("what block? a, b, or c? --> ").lower()
         if block not in schedule["classes"][mod]:
             print("That block does not exist")
             return schedule
